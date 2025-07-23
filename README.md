@@ -216,12 +216,6 @@ stock-lstm-app/
 
 ---
 
-## ✍️ Author
-
-**Rahul**
-Machine Learning & AI Enthusiast
-GitHub: [@rkumar49]((https://github.com/rkumar49))
-LinkedIn: [linkedin.com/in/yourprofile]([https://linkedin.com/in/yourprofile](https://www.linkedin.com/in/rahul-kumar-328b8593/))
 
 
 
