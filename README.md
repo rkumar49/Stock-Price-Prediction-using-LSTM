@@ -1,3 +1,4 @@
+
 # 📈 Stock Trend Prediction Using LSTM (Univariate & Multivariate)
 
 This project aims to analyze and predict stock prices using **Long Short-Term Memory (LSTM)** deep learning models, built in Python and deployed via **Streamlit**.  
@@ -108,3 +109,120 @@ git clone https://github.com/yourname/stock-lstm-app.git
 cd stock-lstm-app
 pip install -r requirements.txt
 streamlit run app.py
+````
+
+---
+
+## 5️⃣ AWS Deployment: Step-by-Step on SageMaker
+
+### 🔹 Model Preparation
+
+1. Train the model locally and save:
+
+   ```python
+   model.save('keras_model_multivariate.h5')
+   ```
+
+2. Upload to S3:
+
+   * Bucket name: `stock-lstm-models`
+   * Key: `keras_model_multivariate.h5`
+
+---
+
+### 🔹 Launch SageMaker Notebook Instance
+
+1. Go to AWS SageMaker Console → **Notebook Instances**
+2. Create new instance (e.g., `stock-lstm-instance`)
+
+   * Instance type: `ml.t2.medium`
+   * IAM Role: Allow S3 read access
+3. Open **JupyterLab** once it's running
+
+---
+
+### 🔹 Load Your App
+
+```bash
+git clone https://github.com/yourname/stock-lstm-app.git
+cd stock-lstm-app
+pip install -r requirements.txt
+```
+
+---
+
+### 🔹 Download Model from S3 (in `app.py`)
+
+```python
+import boto3
+import os
+
+bucket = "stock-lstm-models"
+key = "keras_model_multivariate.h5"
+local_model = "keras_model_multivariate.h5"
+
+if not os.path.exists(local_model):
+    s3 = boto3.client('s3')
+    s3.download_file(bucket, key, local_model)
+```
+
+---
+
+### 🔹 Run Streamlit App
+
+```bash
+streamlit run app.py --server.port 8501 --server.enableCORS false
+```
+
+---
+
+### 🔁 Public Access (Optional via EC2)
+
+SageMaker does not expose ports. Use:
+
+* SSH tunneling (local)
+* Or move project to **EC2 instance**, open port 8501
+
+---
+
+## 📸 Screenshots
+
+> Add demo images inside `/images` folder and embed here
+
+---
+
+## 📚 Folder Structure
+
+```
+stock-lstm-app/
+├── app.py
+├── requirements.txt
+├── keras_model_multivariate.h5  # (Optional local copy)
+├── README.md
+├── utils/
+│   └── s3_loader.py
+├── images/
+│   └── screenshot1.png
+```
+
+---
+
+## 📌 Key Insights
+
+* Multivariate models outperform univariate for trend prediction
+* RMSE < 5: Excellent trend fit, low error
+* High correlation seen between `Open`, `High`, `Low`, and `Close`
+* `Volume` typically behaves independently
+
+---
+
+## ✍️ Author
+
+**Rahul**
+Machine Learning & AI Enthusiast
+GitHub: [@rkumar49]((https://github.com/rkumar49))
+LinkedIn: [linkedin.com/in/yourprofile]([https://linkedin.com/in/yourprofile](https://www.linkedin.com/in/rahul-kumar-328b8593/))
+
+
+
+
