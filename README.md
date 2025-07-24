@@ -183,13 +183,7 @@ SageMaker does not expose ports. Use:
 * SSH tunneling (local)
 * Or move project to **EC2 instance**, open port 8501
 
----
 
-## 📸 Screenshots
-
-> Add demo images inside `/images` folder and embed here
-
----
 
 ## 📚 Folder Structure
 
